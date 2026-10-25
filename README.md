@@ -19,29 +19,29 @@ scripts built around the provided framework. Some examples in this repository:
   sound and fades.
 - [Yarn commands](Assets/TheOneFramework/Core/YarnSpinnerFunctions/YarnSpinnerFunctions.cs)
   extended to control cameras, character facing, objective text and audio.
-- [Yarn script dialogue](Assets\Dialogue\ImpactEventScript.yarn) that includes dialogue and gameplay triggers
+- [Yarn script dialogue](Assets/Dialogue/ImpactEventScript.yarn) that includes dialogue and gameplay triggers
 
 ## Screenshots
 
-![By a church](screenshots\church.png)
+![By a church](screenshots/church.png)
 *By a church*
 
-![Walking around](screenshots\CornerHouseInBuild.PNG)
+![Walking around](screenshots/CornerHouseInBuild.PNG)
 *Walking around*
 
-![Map Overview](screenshots\Overview.PNG)
+![Map Overview](screenshots/Overview.PNG)
 *Map Overview*
 
-![Main Menu](screenshots\MainMenuInBuild.PNG)
+![Main Menu](screenshots/MainMenuInBuild.PNG)
 *Main Menu*
 
 
 ## Gameplay walkthrough
 
-[![Short Walkthrough](screenshots\Thumbnails\ThumbnailShort.png)](https://youtu.be/p-6shZrW_6w)
+[![Short Walkthrough](screenshots/Thumbnails/ThumbnailShort.png)](https://youtu.be/p-6shZrW_6w)
 *Short Walkthrough*
 
-[![Unedited Walkthrough](screenshots\Thumbnails\ThumbnailLong.png)](https://youtu.be/0rDm0M-qD6M)
+[![Unedited Walkthrough](screenshots/Thumbnails/ThumbnailLong.png)](https://youtu.be/0rDm0M-qD6M)
 *Unedited Walkthrough*
 
 ## Source and credits
