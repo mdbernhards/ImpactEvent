@@ -38,11 +38,11 @@ scripts built around the provided framework. Some examples in this repository:
 
 ## Gameplay walkthrough
 
-TODO
+[![Short Walkthrough](screenshots\Thumbnails\ThumbnailShort.png)](https://youtu.be/p-6shZrW_6w)
+*Short Walkthrough*
 
-<!--
-[![walkthrough](screenshots\Overview.PNG)](youtube.com)
--->
+[![Unedited Walkthrough](screenshots\Thumbnails\ThumbnailLong.png)](https://youtu.be/0rDm0M-qD6M)
+*Unedited Walkthrough*
 
 ## Source and credits
 
