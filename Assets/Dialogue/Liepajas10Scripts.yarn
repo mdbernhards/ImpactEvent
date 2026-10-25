@@ -1,0 +1,188 @@
+﻿//------------------------------------------------------------------------
+//                        Liepajas 10 Variables (Called in start)
+//------------------------------------------------------------------------
+title: Liepajas10Variables
+---
+<<set $HasEnteredLiepajas10 = false>>
+<<set $Liepajas10Resolved = false>>
+
+<<set $hasCesuAlus = false>>
+<<set $hasLachplesisBeer = false>>
+
+<<set $badPoints = 0>>
+
+
+//------------------------------------------------------------------------
+//                        Entering Liepajas 10
+//------------------------------------------------------------------------
+title: EnteringLiepajas10
+---
+<<show_text "QuestTitleLiepajas10">>
+<<disable_controls "Player">>
+Voice: Who is here? Answer me!
+You Freeze
+Seems like this time as you break into someones backyard they hear you
+
+<<enable_controls "Player">>
+===
+
+//------------------------------------------------------------------------
+//                        Entering Liepajas 10
+//------------------------------------------------------------------------
+title: EnteringLiepajas10Continuation
+---
+<<disable_controls "Player">>
+A voice seeming to come from the house calls out to you
+Voice: I know you are there!
+-> *say nothing*
+	Voice: Really, nothing?
+	Voice: Must have been the wind
+	<<wait 5>>
+	At this point you don't know what to do
+	Your leg has a sharp pain and your feet make sound
+	Voice: Ha ha, I knew it, Who is this?
+	Voice: I have a gun, what do you want?
+	You: Is this a designated disaster shelter?
+-> Hello, sorry to bother you
+	Voice: Hey I'm guessing you usually don't walk in to random backyards and you are here because of the meteor?
+	You: Well, yes
+Voice: In soviet times this was a designated shelter. Some old documents still reference it.
+Voice: So now every couple of disasters there is a smart guy asking to be let in.
+Voice: This isn't even a bunker, it's just a house with a basement that was marked as a "bunker" to show "prepairdness" by the Government
+
+What will you do with this information?
+-> Ask to be let in anyways
+	Voice: Not gonna happen
+-> Leave
+	You: Alright, I guess see ya.
+	Voice: Wait
+
+Voice: I do have a proposition
+Voice: I did leave my beer out on the table over there
+Voice: If you bring it here so I can drink it, I'll let you in
+Voice: When you have it come to the door facing the garden
+Voice: There is a small hole to get it through
+
+<<enable_controls "Player">>
+<<show_text "ObjectiveGetTheBeer">>
+<<set $HasEnteredLiepajas10 = true>>
+===
+
+//------------------------------------------------------------------------
+//                        LIEPAJAS 10 BUNKER
+//------------------------------------------------------------------------
+title: Liepajas10Bunker
+---
+<<disable_controls "Player">>
+<<if $HasEnteredLiepajas10 == false>>
+	<<jump EnteringLiepajas10Continuation>>
+<<endif>>
+
+<<if $Liepajas10Resolved == true>>
+    Voice: I already told you. Get lost.
+    Voice: You have ruined the day I probably die.
+	<<enable_controls "Player">>
+	<<stop>>
+<<endif>>
+
+Voice: Bring me my beer! I don't have all day down here.
+
+What do you do?
+-> Offer a Beer
+	Voice: You again? Make it quick.
+	<<jump Liepajas10BeerChoice>>
+-> Leave
+	You: ...This feels like a bad idea anyway.
+	You step back into the yard, the soil soft under your feet.
+	Somewhere below, the man mutters to himself.
+<<enable_controls "Player">>
+===
+
+//------------------------------------------------------------------------
+//                        Liepajas10BeerChoice
+//------------------------------------------------------------------------
+title: Liepajas10BeerChoice
+---
+The basement voice echoes through the cracked concrete walls.
+
+Voice: So? You got it or not?
+
+What do you offer?
+
+-> Give Your (Cesu) Beer
+	You pull out a bottle of Cesu Alus.
+	The glass is cold, slightly sweaty in your hand.
+	You pass it through the opening.
+	A long pause.
+	Voice: ...
+	Voice: What is THIS Garbage.
+	The bottle suddenly slips from his hand.
+	Glass shatters somewhere below.
+	Voice: Are you joking?
+	Voice: This is not what I asked for. Get out.
+	<<set $badPoints += 1>>
+	<<set $Liepajas10Resolved = true>>
+	There is a long silence.
+	Then laughter.
+	Voice: You really thought that would work?
+	Voice: Come back when you learn what beer is.
+	Voice: Actually no, don't come back ever
+	<<complete_and_hide "ItemBeer1" 1>>
+	<<complete_and_hide "ObjectiveBringTheBeer" 1>>
+	<<complete_and_hide "ObjectiveGetTheBeer" 1>>
+	<<complete_and_hide "QuestTitleLiepajas10" 1>>
+	<<complete_text "ObjectiveFindBunkerGood1" >>
+	<<complete_text "ObjectiveFindBunkerOkay3" >>
+-> Give His Lacplesis Beer
+	<<if $hasLachplesisBeer == true>>
+		<<set $hasLachplesisBeer = false>>
+		You carefully take out the bottle — Lacplesis Nefiltretais.
+		The label is slightly scratched, condensation dripping down the glass.
+		You slide it forward.
+		There is silence.
+		The bottle suddenly slips from his hand.
+		Glass shatters somewhere below.
+		Voice: Oh shit... I guess goodbye!
+		You: hey let me in.
+		Voice: A deal is a deal and I didn't get to drink my beer... so get lost!
+		<<complete_and_hide "ItemBeerLacplesis" 1>>
+		<<complete_and_hide "ObjectiveBringTheBeer" 1>>
+		<<complete_and_hide "ObjectiveGetTheBeer" 1>>
+		<<complete_and_hide "QuestTitleLiepajas10" 1>>
+		<<complete_text "ObjectiveFindBunkerGood1" >>
+		<<complete_text "ObjectiveFindBunkerOkay3" >>
+		<<set $Liepajas10Resolved = true>>
+	<<else>>
+		Voice: Where is it? Liar!
+		Voice: I can hear you fumbling around up there, leave if you can't find it.
+	<<endif>>
+-> Leave
+    You: Yeah... I can't find it.
+    Voice: Look harder or just make it easier for both of us and leave!
+<<enable_controls "Player">>
+===
+
+title: GettingBeer
+---
+<<if $Liepajas10Resolved == true>>
+    Voice: No point in doing this anymore
+	<<enable_controls "Player">>
+	<<stop>>
+<<endif>>
+
+<<disable_controls "Player">>
+
+<<set $hasLachplesisBeer = true>>
+You get the beer and are ready to bring it back
+
+<<complete_and_hide "ObjectiveGetTheBeer" 2>>
+<<show_text "ObjectiveBringTheBeer">>
+<<show_text "ItemBeerLacplesis">>
+<<hide_text "BeerBottleLacplesis">>
+
+<<enable_controls "Player">>
+===
+
+// Script or something to pick up the beer
+// Script to check if you have the beer and then giving the beer
+// In that script check if you have more beer to give it. and repeat droping

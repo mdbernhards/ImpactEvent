@@ -1,0 +1,73 @@
+﻿//------------------------------------------------------------------------
+//                        LoudPeopleAtChurchDoor
+//------------------------------------------------------------------------
+title: LoudPeopleAtChurchDoor
+---
+<<disable_controls "Player">>
+
+As you make your way up the hill you hear some disturbance up the church steps
+Voices overlap shouting at each other,
+There is repetitive banging on the large enterence wooden doors
+
+<<show_text "QuestTitleChurch">>
+
+<<enable_controls "Player">>
+===
+
+//------------------------------------------------------------------------
+//                        CHURCH BUNKER
+//------------------------------------------------------------------------
+title: ChurchBunker
+---
+<<disable_controls "Player">>
+<<show_text "ObjectiveChurchFindOut">>
+
+<<if $haveTalkedToChurch == true>>
+    From behind the door, the pastor's voice cuts through again, sharp and bitter.
+	Pastor (through door): This is what happens when people stop beliving in god!
+	Pastor (through door): After Soviet times I thought people would start to belive again
+    There's nothing new to gain here.
+<<else>>
+	<<set $haveTalkedToChurch = true>>
+	The church doors are closed shut from the inside
+	A small group has gathered on the steps, taking turns knocking and pleading their case
+	Behind the door stands the pastor who isn't willing to let anyone in
+	Pastor (through door): The Church bunker is closed. 
+    Pastor (through door): Budget cuts. Austerity measures.
+    Pastor (through door): Besides.. thirty years from now, I imagine God is going to be working from home anyway.
+	Crowd murmurs think over how mutch they have given in the past years.
+    Crowd: We've donated for years…
+    Crowd: We helped build this place…
+    Crowd: You can't just lock us out!
+	Pastor (through door): But is it enough?
+	You get the feeling this situation isn't going anywhere.
+    What do you do?
+	<<complete_and_hide "ObjectiveChurchFindOut" 1>>
+	<<show_text "ObjectiveChurchTryToGetIn">>
+-> Argue with the pastor
+	<<set $badPoints += 1>>
+	You: Hey man can you let me in at least?
+	Pastor (through door): Am I supposed to know you? 
+	You: God loves all his children.
+	Pastor (through door): But the children only remember God when it's convenient.
+	The crowd grows tense. 
+	You've made things worse by disrespected religion and making things awkward.
+-> Try to calm the crowd
+	<<set $goodPoints += 1>>
+	You try to get everyones attention
+	You: Hey chill out, let father speek, hear whats the issue
+	The crowd quiets a bit. You made things better!
+	You: So can you still not let us in?
+	Pastor (through door): Yes, I can not.
+-> Leave
+	<<set $goodPoints += 0>>
+This isn't moving forward so you leave
+<<complete_and_hide "ObjectiveChurchTryToGetIn" 1>>
+<<complete_and_hide "QuestTitleChurch" 2>>
+<<complete_text "ObjectiveFindBunkerGood2" >>
+<<complete_text "ObjectiveFindBunkerOkay2" >>
+<<complete_text "ObjectiveFindBunkerBad1" >>
+<<endif>>
+
+<<enable_controls "Player">>
+===

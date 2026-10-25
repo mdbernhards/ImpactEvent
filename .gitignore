@@ -1,0 +1,98 @@
+# ImpactEvent source snapshot allowlist.
+# Each commit uses an explicitly reviewed file list. All assets remain on disk.
+# Documentation and notices are reviewed and staged separately.
+
+/*
+!/.gitignore
+!/.gitattributes
+!/README.md
+!/PUBLICATION.md
+!/THIRD_PARTY_NOTICES.md
+!/ThirdPartyNotices/
+!/Assets/
+!/Packages/
+!/ProjectSettings/
+
+# Project-specific code and dialogue, with original metadata.
+/Assets/*
+!/Assets/Scripts/
+!/Assets/Scripts.meta
+!/Assets/Dialogue/
+!/Assets/Dialogue.meta
+!/Assets/TheOneFramework/
+!/Assets/TheOneFramework.meta
+
+# Separately credited teaching script: permission unresolved.
+/Assets/Scripts/IntVariable.cs
+/Assets/Scripts/IntVariable.cs.meta
+
+# Only the modified MIT framework integration, with ancestor metadata.
+/Assets/TheOneFramework/*
+!/Assets/TheOneFramework/Core/
+!/Assets/TheOneFramework/Core.meta
+/Assets/TheOneFramework/Core/*
+!/Assets/TheOneFramework/Core/YarnSpinnerFunctions/
+!/Assets/TheOneFramework/Core/YarnSpinnerFunctions.meta
+/Assets/TheOneFramework/Core/YarnSpinnerFunctions/*
+!/Assets/TheOneFramework/Core/YarnSpinnerFunctions/YarnSpinnerFunctions.cs
+!/Assets/TheOneFramework/Core/YarnSpinnerFunctions/YarnSpinnerFunctions.cs.meta
+
+# Dependency descriptions, without the embedded third-party implementation.
+/Packages/*
+!/Packages/manifest.json
+!/Packages/packages-lock.json
+
+# Generated folders, IDE data, exports, archives and operating-system clutter.
+**/[Ll]ibrary/
+**/[Tt]emp/
+**/[Ll]ogs/
+**/[Oo]bj/
+**/[Uu]ser[Ss]ettings/
+**/[Bb]uild/
+**/[Bb]uilds/
+**/[Bb]uild[Ee]xport/
+**/[Ff]inal[Bb]uild[Ee]xport/
+**/.vs/
+**/.vscode/
+**/.idea/
+**/.gradle/
+**/MemoryCaptures/
+**/Recordings/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.user
+*.userprefs
+*.pidb
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+*.tmp
+*.log
+*.apk
+*.aab
+*.app
+*.unitypackage
+*.unitypackage.meta
+*.zip
+*.7z
+*.rar
+.DS_Store
+Thumbs.db
+
+# Credentials and local tooling.
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+*.keystore
+*.jks
+credentials.json
+service-account*.json
+
+# Local preparation evidence is outside the public snapshot.
+/PublicationReview/

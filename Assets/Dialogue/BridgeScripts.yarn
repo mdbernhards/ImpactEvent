@@ -1,0 +1,99 @@
+﻿title: CheckIfBridgePuzzleDone
+---
+<<disable_controls "Player">>
+
+<<if $bridgeFixed == true>>
+	Old Man: The bridge is fixed, Go save yourself!
+	<<enable_controls "Player">>
+	<<stop>>
+<<endif>>
+
+<<if $planksFound >= 3>>
+	<<set $bridgeFixed = true>>
+	You: That should hold.
+	<<play_animation "BridgePlank1" "Plank1Animation" true>>
+	<<play_animation "BridgePlank2" "Plank2Animation" true>>
+	<<play_animation "BridgePlank3" "Plank3Animation" true>>
+
+	<<complete_and_hide "ObjectiveFixTheBridge" 1>>
+	<<complete_and_hide "QuestTitleBridge" 2>>
+	<<show_text "QuestTitleEnding">>
+	<<hide_text "BridgeWall">>
+
+	Old Man: Good luck, get to safety! Leave me here. I'm too old...
+<<else>>
+	Old Man: You are still missing some planks
+<<endif>>
+
+<<enable_controls "Player">>
+===
+
+title: IntroductionToBridge
+---
+<<if $gotBridgeInfo == true>>
+	<<jump CheckIfBridgePuzzleDone>>>>
+<<endif>>
+
+<<disable_controls "Player">>
+<<face "Player" "OldMan">>
+<<face "OldMan" "Player">>
+<<wait 1>>>>
+
+<<show_text "QuestTitleBridge">>
+
+Old Man: *He Wipes sweat from his forehead a handkerchief*
+Old Man: Hello, you looking for a way across? well the main bridge isn't finished yet.
+Old Man: They actually haven't even started yet, just left a floting sign about construction
+Old Man: Probably the same guys who made the home address signs....
+You don't understand what his on about
+Old Man: Anyways the bridge was supposed to be done 2 years ago
+You: Figures
+Old Man: It will probably be done when your grandchildren are running from the next a meteor
+Old Man: As you can see a temporary bridge was set up, but the middle section collapsed last winter under a heavy snowfall. Nobody came to fix it.
+You: So, no way to cross?
+Old Man: Well, if you're desperate enough, three good planks would bridge the gap.
+Old Man: Look around the area you will definitely find some...
+Old Man: Good luck hunting for them!
+The Old Man puts on a big smiles, showing his remaining three yellowed teeth.
+
+<<show_text "ObjectiveFindEnoughPlanks">>
+
+<<set $gotBridgeInfo = true>>
+<<enable_controls "Player">>
+
+===
+
+title: FoundPlank
+---
+<<disable_controls "Player">>
+
+<<if $planksFound >= 3>>
+	You: You have enough planks already.
+<<else>>
+	You: You have found a plank!
+	<<set $planksFound += 1>>
+<<endif>>
+
+<<enable_controls "Player">>
+
+<<jump SetInventory>>
+===
+
+title: SetInventory
+---
+
+<<if $planksFound == 3>>
+	<<complete_and_hide "ItemPlanks2" 1>>
+	<<show_text "ItemPlanks3">>
+	<<complete_and_hide "ObjectiveFindEnoughPlanks" 1>>
+	<<show_text "ObjectiveFixTheBridge">>
+<<elseif $planksFound == 2>>
+	<<complete_and_hide "ItemPlanks1" 1>>
+	<<show_text "ItemPlanks2">>
+<<elseif $planksFound == 1>>
+	<<show_text "ItemPlanks1">>
+<<elseif $planksFound == 0>>
+	<<complete_and_hide "ItemPlanks1" 1>>
+<<endif>>
+
+===

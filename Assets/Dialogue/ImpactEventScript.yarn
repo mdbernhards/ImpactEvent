@@ -1,0 +1,201 @@
+﻿//------------------------------------------------------------------------
+//                                  Start
+//------------------------------------------------------------------------
+title: Start
+---
+// Globals
+<<debug_find "InventoryTitle">>
+<<debug_find "ItemCigarettes">>
+<<debug_find "QuestTitleFindYourCar">>
+
+
+<<declare $goodPoints = 0>>
+<<declare $badPoints = 0>>
+
+<<declare $copTrust = 0>>
+
+<<declare $hasBeer = true>>
+<<declare $hasCigarette = true>>
+
+<<declare $beliefGod = false>>
+
+<<declare $quest = "unassigned">>
+
+// Policeman Variables
+<<declare $firstPoliceTalkCompleted = false>>
+<<declare $gotBunkerInfo = false>>
+
+// Bunker 16
+<<declare $isRadioOn = false>>
+<<declare $haveTalkedToMaple15 = false>>
+<<declare $hasBeenRejected = false>>
+<<declare $PickedName = "">>
+<<declare $haveTalkedToLiepajas15 = false>>
+
+// Church Bunker
+<<set $haveTalkedToChurch = false>>
+
+// Bridge
+<<declare $gotBridgeInfo = false>>
+<<declare $planksFound = 0>>
+<<declare $bridgeFixed = false>>
+
+<<jump LakeIntro>>
+===
+
+//------------------------------------------------------------------------
+//                        CHAPTER 1 - LAKE INTRO
+//------------------------------------------------------------------------
+title: LakeIntro
+---
+<<disable_controls "Player">>
+
+<<camera "WideLakeShot">>
+<<wait 3>>
+// Ambient sounds nature
+
+You: What a nice day. No kids, no wife, just me and my mosquitoes.
+// Static Camera Shot on beer
+<<wait 1>>
+<<camera "BeerCloseup">>
+
+You: Today's a little too hot... but this still beats almost anything.
+// Wide Shot of the lake
+<<wait 2>>
+
+<<camera "WideLakeShot2">>
+
+You feel like an egg being cracked on to a frying pan
+You feel like T-posing all day would be so nice
+
+<<wait 2>>
+....
+
+<<camera "PlayerCloseup">>
+
+You: *Start using T-pose powers to drink beer*
+<<play_animation "DrinkingBeer" "DrinkBeerAnimation" true>>
+
+<<wait 1>>
+Nature: *Angry Sounds*
+You: Sorry
+
+<<wait 1>>
+
+As you are enjoying this day, something feels off
+<<wait 2>>
+
+<<jump MeteorAlert>>
+===
+
+//------------------------------------------------------------------------
+//                        CHAPTER 2 - METEOR ALERT
+//------------------------------------------------------------------------
+title: MeteorAlert
+---
+// Siren starts
+//<<run_command "PlaySiren">>
+
+<<wait 3>>
+
+<<camera "WideLakeShot">>
+
+System: WARNING! WARNING! A meteor is incoming.
+System: Impact event expected in five minutes
+System: Seek shelter immediately
+
+<<camera "PlayerCloseup">>
+
+You: Oh shit. What the hell?
+You: Wait a minute!
+
+<<camera "FocusSun">>
+
+...
+You: Is it becoming darker or am I going blind? I haven't drunk any moonshine today...
+You: Something is in front of the sun? Is it the meteor?
+There is nothing.. just damage to your eyes
+
+You: Time to move.
+
+You grab your last beers and a cigarette and get a move on
+
+<<camera "PlayerCam">>
+
+<<enable_controls "Player">>
+<<show_text "ItemCigarettes">>
+<<show_text "ItemBeer2">>
+<<show_text "QuestTitleFindYourCar">>
+<<show_text "InventoryTitle">>
+
+// Start game countdown timer (or not)
+//<<run_command "StartTimer">>
+
+You: Time to get out of here.
+===
+
+//------------------------------------------------------------------------
+//                        CHAPTER 1 - LAKE INTRO
+//------------------------------------------------------------------------
+title: BridgePlank
+---
+<<give_item "Player" "item">>
+Have a plank!
+===
+
+//------------------------------------------------------------------------
+//                        CHAPTER 3 - POLICE FIRST CONTACT (Your Car)
+//------------------------------------------------------------------------
+title: TryOpenOtherCar
+---
+<<disable_controls "Player">>
+You use your car key to open the door...
+It doesn't work
+<<enable_controls "Player">>
+===
+
+//------------------------------------------------------------------------
+//                        Liepajas16
+//------------------------------------------------------------------------
+title: Liepajas16
+---
+Liepajas iela 16 resident: Please leave my property you devils turtle!
+===
+
+//------------------------------------------------------------------------
+//                       OLD MAN HUT
+//------------------------------------------------------------------------
+title: DirectionsToOldMan
+---
+Person: Oh what do you think is happening to the old man, can you check?
+Person: Hopefully he got to safety
+Person: You can check him out at Liepajas 7 (whatever) // There should be a sign there but fallen over, hard to find, behind rock
+Person: It is more of a forest with a hut at the end
+
+Old Man: Got money?
+-> Give money
+    <<set $goodPoints += 1>>
+    Old Man: Alright... I'll go.
+-> Ignore
+    <<set $badPoints += 1>>
+
+you keeep going
+===
+
+//------------------------------------------------------------------------
+//                       OLD MAN HUT
+//------------------------------------------------------------------------
+title: OldManHut
+---
+Old Mystery Man: hey hey Whatzuuuppp!!! You know what is crazy I was watching a movie about meteors
+Old Mystery Man: what are the chances
+
+Old Man: Got money?
+-> Give money
+    <<set $goodPoints += 1>>
+    Old Man: Alright... I'll go.
+-> Ignore
+    <<set $badPoints += 1>>
+
+you keeep going
+===

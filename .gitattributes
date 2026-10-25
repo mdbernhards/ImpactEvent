@@ -1,0 +1,11 @@
+# The proposed snapshot contains text and does not require Git LFS.
+# These rules do not modify existing working files or Git history.
+* text=auto
+*.cs text
+*.yarn text
+*.yarnproject text
+*.json text
+*.md text
+*.txt text
+*.meta text
+*.asset text

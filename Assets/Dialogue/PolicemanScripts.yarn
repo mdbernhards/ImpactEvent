@@ -1,0 +1,341 @@
+﻿
+//------------------------------------------------------------------------
+//                        PolicemanCallsForYou (If you leave without talking)
+//------------------------------------------------------------------------
+title: PolicemanCallsForYou
+---
+<<if $firstPoliceTalkCompleted == true>>
+	<<stop>>
+<<endif>>
+
+!
+<<walk_to "Policeman" "Player" 2 false >>
+<<wait 1>>
+<<look_at "Policeman">>
+<<walk_to "Policeman" "Player" 2 true >>
+
+<<camera_return>>
+<<face "Player" "Policeman">>
+<<face "Policeman" "Player">>
+<<wait 1>>
+<<disable_controls "Player">>
+Stranger: Hey! You! Stop right there!
+
+You turn to look at a person running your way.
+As he comes closer, he seems familiar
+
+//<<camera_focus "PolicemanHead">>
+
+You zone out thinking about it 
+Policeman: Hello! I'm off duty, but you still need to respect me!
+You can feel you have had one too many beers
+
+Policeman: Hey .... Heyy you. Can you hear me? Did you hit your head?
+-> Stare at him
+    Policeman: Excuse me, have you been drinking tonight?
+	Your look tells him everything
+	Policeman: Atleast your enjoying it buddy
+-> Yes, how can I help? Isn't it such a beautiful day?
+	Policeman: I'm delited by your attitude, but
+    Policeman: Did you not hear that a meteor is comming?
+
+Policeman: Please Find Shelter immediately!
+
+<<jump FirstPoliceConversation>>
+===
+
+//------------------------------------------------------------------------
+//                        CHAPTER 3 - TryOpenPoliceCar (Should work only once)
+//------------------------------------------------------------------------
+title: TryOpenPoliceCar
+---
+<<if $firstPoliceTalkCompleted == true>>
+    <<stop>>
+<<endif>>
+
+<<disable_controls "Player">>
+You grab the handle of the police car and pull.
+
+<<walk_to "Policeman" "Player" 1>>
+<<camera_return>>
+<<face "Player" "Policeman">>
+<<face "Policeman" "Player">>
+
+Policeman: What The Hell is wrong with you!
+Policeman: It's the end of the world and you're stealing a police car?!
+Policeman: ...you know what? I can't do this anymore.
+
+<<camera_return>>
+<<walk_to "Policeman" "PoliceCube" 1 false >>
+The Policeman walks off, shaking his head, muttering something about retirement.
+
+<<wait 2>>
+You put your car key in to the ignition and try to start the car
+
+Wierdly Nothing.
+You try a couple of more times and leave the car be.
+
+<<set $firstPoliceTalkCompleted = true>>
+
+<<enable_controls "Player">>
+===
+
+//------------------------------------------------------------------------
+//                        CHAPTER 3 - POLICE FIRST CONTACT (Your Car)
+//------------------------------------------------------------------------
+title: TryOpenYourCar
+---
+<<if $firstPoliceTalkCompleted == true>>
+    <<stop>>
+<<endif>>
+
+<<disable_controls "Player">>
+
+You pull your keys out and unlock your car.
+
+As the door open—
+
+<<walk_to "Policeman" "Player" -1 false>>
+<<camera_return>>
+<<face "Player" "Policeman">>
+<<face "Policeman" "Player">>
+Stranger: Sir! Stop!
+
+You turn. A sweaty man stands there, slightly panicked.
+
+Stranger: Do you not recognize me?
+
+You feel that you are too drunk to do so...
+
+Stranger: Hello? I'm the local cop, I didn't have time to put on my uniform.
+
+You obviosly instantly recognize him..
+
+Policeman: Did you not hear the announcment? A fucking meteor is comming!
+Policeman: Please tell me you're not planning to drive right now.
+
+Policeman: Anyways you can't get anywhere there was a big accident just around the corner
+Policeman: So don't drive
+-> I wasn't going to.
+	Policeman: Good. Because I would have to stop you. Probably.
+-> I don't care, which one is my car again?
+	Policeman: That is…
+
+Policeman: Listen. You need to find shelter. A bunker, basement, anything.
+
+<<jump FirstPoliceConversation>>
+===
+
+//------------------------------------------------------------------------
+//                        CHAPTER 3 - POLICE FIRST CONTACT (Your Car)
+//------------------------------------------------------------------------
+title: TryOpenCopFriendCar
+---
+<<if $firstPoliceTalkCompleted == true>>
+    <<stop>>
+<<endif>>
+
+<<disable_controls "Player">>
+
+You touch the door handle—
+
+<<walk_to "Policeman" "Player" -3 false>>
+
+You try to open the door an almost instantly you hear someone approaching
+
+<<walk_to "Policeman" "Player" -1 false>>
+<<camera_return>>
+<<face "Player" "Policeman">>
+<<face "Policeman" "Player">>
+Stranger: HANDS UP!
+
+You freeze.
+You look back at a sweaty man smoking a cigarettes
+He introduces himself as a policeman and you instantly recognize him
+
+Policeman: You're really trying to steal my captain's car while a meteor is comming?
+Policeman: Incredible. Truly. Right in front of me.
+
+You: My bad, must be the wrong car..
+
+Policeman: Look, I don't have time to arrest you. Just go. Find shelter.
+
+<<jump FirstPoliceConversation>>
+===
+
+//------------------------------------------------------------------------
+//                        CHAPTER 3 - POLICE FIRST CONTACT
+//------------------------------------------------------------------------
+title: FirstPoliceConversation
+---
+<<disable_controls "Player">>
+You: Where?
+
+The policeman hesitates.
+
+Policeman: I… don't remember exactly. Let me think...
+Policeman: I remember something about safe locations but...
+
+The Policeman is entering remembering mode
+
+<<set $firstPoliceTalkCompleted = true>>
+
+<<complete_and_hide "QuestTitleFindYourCar" 2>>
+<<show_text "QuestTitleFindShelterStart">>
+<<show_text "ObjectiveAskForDirections">>
+
+<<look_reset>>
+<<enable_controls "Player">>
+===
+//------------------------------------------------------------------------
+//                        POLICE PUZZLE (Second Police Conversation)
+//------------------------------------------------------------------------
+title: SecondPoliceConversation
+---
+<<if $firstPoliceTalkCompleted == false>>
+	<<jump PolicemanCallsForYou>>
+    <<stop>>
+<<endif>>
+
+<<disable_controls "Player">>
+<<camera_return>>
+<<face "Player" "Policeman">>
+<<face "Policeman" "Player">>
+
+<<if $gotBunkerInfo == true>>
+	Policeman: What are you still doing here? Get to safety!
+	<<jump PolicePuzzleResult>>
+    <<stop>>
+<<endif>>
+
+You (to yourself): Wait a minute, I don't think I have seen any meteors in the sky... Fake news?
+You: Hey is the Government pulling my nose? I don't see no meteor
+Policeman: Hahaha, I heard through radio it is going straight to Vilnius, why would they lie anyways?
+You: Why would they lie? When haven't they? Those fat cats
+You: But I belive you, stuff like this is always happening..
+
+..
+
+You (to yourself): Alright… think. How do I get him to talk?
+
+// STAGE 1
+It seems like you could pick a strategy to get more information
+-> Be Kind
+	<<set $copTrust += 2>>
+	You: Hey, it's alright. Nothing could ruin this sunny day.
+	You: You've got this.
+	Policeman: Oh yeah, thanks! I'm thinking...
+-> Act Sober // Change
+	<<set $copTrust += 0>>
+	You: I am completely fine. Proceed.
+	Policeman: You sound like a robot, but okay.
+-> Be Formal
+	<<set $copTrust += 1>>
+	Trying to act sober
+	You: Officer, I Require instructions for how to get to safety now!
+	Policeman: Yes, Yes. Alright, alright I'm starting to remember, keep going.
+
+// STAGE 2
+Okay Okay, maybe something different could work better?
+-> Tell a Joke
+    <<set $copTrust += 1>>
+    You: So the joke goes
+    A rabbit is walking through a forest and spots something brown on the ground
+    He gives it a taste and says
+    Rabbit: Eww, that's shit! Thank god I didn't step on it
+    Policeman: "Oh yeah, I've heard that one, that's a good one."
+-> Be Flirty
+    <<set $copTrust += 0>>
+    You: Hey your eyes really match your car
+    Policeman: I regret approaching you.
+-> Offer a Cigarette
+    Policeman: Oh thanks man!
+	<<complete_and_hide "ItemCigarettes" 2>>
+    <<set $copTrust += 2>>
+
+// STAGE 3
+Now its basically all or nothing, you pick the right strategy or you'll die
+-> Give Beer
+	Policeman: That is so nice of you. :)
+	<<complete_and_hide "ItemBeer2" 1>>
+	<<show_text "ItemBeer1">>
+	<<set $copTrust += 2>>
+-> Become Emotional
+	You: Please my dear friend, I want to live
+	You: Can't you understand
+	Policeman: ...yeah, same. That doesn't really help, does it?
+	<<set $copTrust += 0>>
+-> Blame The Government
+	You: Saeima probably knew and still did nothing.
+	Policeman: If I speak, I get fired. So I will not speak.
+	<<set $copTrust += 1>>
+
+// RESULT
+<<jump PolicePuzzleResult>>
+===
+
+//------------------------------------------------------------------------
+//                        Police Puzzle Result
+//------------------------------------------------------------------------
+title: PolicePuzzleResult
+---
+<<complete_and_hide "QuestTitleFindShelterStart" 1>>
+<<complete_and_hide "ObjectiveAskForDirections" 1>>
+
+<<if $copTrust < 1>>
+	Policeman: Now that I've been thinking about it, I've decided to never tell you where to go
+    Policeman: You have treated me badly and broken my trust
+    Policeman: Please Leave...
+	<<show_text "QuestTitleFindBunker">>
+	<<show_text "ObjectiveFindBunkerOnYourOwn">>
+<<elseif $copTrust < 3>>
+	Policeman: So thinking about hasn't brought up a lot of memories for me
+	Policeman: I guess the Church maybe? 
+	Policeman: There are also some houses around here marked as a shelter
+	Policeman: Anyways, anything else? I have stopped enjoying looking at your face..
+	<<show_text "QuestTitleFindBunker">>
+	<<show_text "ObjectiveFindBunkerBad1">>
+	<<show_text "ObjectiveFindBunkerBad2">>
+<<elseif $copTrust < 5>>
+	Policeman: So to best of my knowledge
+	He is sweating balls
+	Policeman: I know that there where three on Liepajas street and another on Dumpu street.
+	Policeman: I would start with Liepajas 5, or was it 15? Or even 10?
+	Policeman: Be sure to remember this!
+	Policeman: Anything else?
+	<<show_text "QuestTitleFindBunker">>
+	<<show_text "ObjectiveFindBunkerOkay1">>
+	<<show_text "ObjectiveFindBunkerOkay2">>
+	<<show_text "ObjectiveFindBunkerOkay3">>
+	<<show_text "ObjectiveFindBunkerOkay4">>
+<<else>>
+	Policeman: So based on my photographic memory that thanks to your speeking skills I was able to reactivate
+	Policeman: The following addresses have available shelter
+	Policeman: Dumpu iela 4, Liepajas iela 10, 13 and 15
+	Policeman: Be sure to remember this buddy!
+	Policeman: Anything else?
+	<<set $gotBunkerInfo = true>>
+	<<show_text "QuestTitleFindBunker">>
+	<<show_text "ObjectiveFindBunkerGood1">>
+	<<show_text "ObjectiveFindBunkerGood2">>
+	<<show_text "ObjectiveFindBunkerGood3">>
+	<<show_text "ObjectiveFindBunkerGood4">>
+<<endif>>
+
+You: Alright Thank you! Will you be coming with?
+Policeman: No.. there might be other drunks looking for help, meet you there!
+Policeman: I'm like the drunk Superman!
+You: Okay, I guess good luck! Stay safe and goodbye!
+<<walk_to "Policeman" "PoliceCube" 1 false >>
+
+You (under your breath): More like the pigman
+You immediately feel bad about saying that
+
+<<camera_return>>
+<<enable_controls "Player">>
+===
+
+// If you answer average on the police questions:
+// He could be like:
+// "These numbers might help you:"
+// "69, 67, 10, 420, 4, 15, 21, church, 8"

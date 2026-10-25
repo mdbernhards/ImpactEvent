@@ -1,0 +1,91 @@
+﻿//------------------------------------------------------------------------
+//                        Toggle Radio
+//------------------------------------------------------------------------
+title: ToggleRadio
+---
+<<if $hasBeenRejected == false>>
+	<<show_text "QuestTitleLiepajas15">>
+<<endif>>
+
+<<if $isRadioOn == true>>
+	// You turn off the radio...
+	<<set $isRadioOn = false>>
+<<else>>
+	// You turn on the radio...
+	<<set $isRadioOn = true>>
+<<endif>>
+===
+
+//------------------------------------------------------------------------
+//                        Thanks For Turn Off Radio
+//------------------------------------------------------------------------
+title: ThanksForTurningOffRadio
+---
+
+<<if $isRadioOn == false && $haveTalkedToMaple15 == false>>
+	<<disable_controls "Player">>
+	As you are leaving you suddenly hear a voice behind you in the distance.
+	Someone: Thank You for turning it off!
+	<<set $haveTalkedToMaple15 = true>>
+	<<enable_controls "Player">>
+<<endif>>
+===
+
+//------------------------------------------------------------------------
+//                        Liepājas 15 BUNKER
+//------------------------------------------------------------------------
+title: Liepajas15Bunker
+---
+<<disable_controls "Player">>
+<<set $haveTalkedToLiepajas15 = true>>
+
+<<if $hasBeenRejected == true>>
+	Voice inside: Piss Off!
+<<elseif $isRadioOn == true>>
+	Voice inside: Turn off the radio first! Talk after
+	<<show_text "ObjectiveTurnOffRadio">>
+<<else>>
+	<<complete_and_hide "ObjectiveTurnOffRadio" 1>>
+	You: Hello guys what do you have here?
+	Voice: Ehh nothing mutch, just you know a shed...
+	You: Doesn't look much like a shed, seems like this construction is well inforced?
+	You: Could this be a bunker?
+	Voice: Okay, yes, yes.. Now you are going to ask me if there is space inside and I can stop you and say there is.
+	You: That's great, open up!
+	<<show_text "ObjectiveTryToGetInLiepajas15">>
+	Voice: wait, wait, wait first you need to answer a question
+	Voice: what is your name?
+	-> Edgars
+		Voice: Oh wow Edgars what are the chances, that's my name
+		Edgars: Well unfortunetly this is a no Edgar's bunker and I'm already in... so I can't let you in
+		You: WTF, this is BS, you aren't going to let me in?
+		You: You are going to let an innocent man die?
+		Edgars: innocent... you? Whatever
+		<<set $PickedName = "Edgars">>
+	-> John
+		Voice: Oh wow John what are the chances, that's my name
+		John: Well unfortunetly this is a no John's bunker and I'm already in... so I can't let you in
+		You: WTF, this is BS, you aren't going to let me in?
+		You: You are going to let an innocent man die?
+		John: innocent... you Sure?
+		<<set $PickedName = "John">>
+	-> Homer
+		Voice: Oh wow Homer what are the chances, that's my name
+		Homer: Well unfortunetly this is a no Homer's bunker and I'm already in... so I can't let you in
+		You: WTF, this is BS, you aren't going to let me in?
+		You: You are going to let an innocent man die?
+		Homer: innocent... you Sure?
+		<<set $PickedName = "Homer">>
+	// There should be an option to pick another name that you write in.
+	// And then the name appears crossed out on a poster
+
+	This well enforced shed looks like it is going to fall apart anyways 
+	
+	<<complete_and_hide "ObjectiveTryToGetInLiepajas15" 2>>
+	<<complete_and_hide "QuestTitleLiepajas15" 1>>
+	<<complete_text "ObjectiveFindBunkerGood3" >>
+	<<complete_text "ObjectiveFindBunkerOkay1" >>
+	<<set $hasBeenRejected = true>>
+<<endif>>
+<<enable_controls "Player">>
+===

@@ -1,0 +1,71 @@
+﻿//------------------------------------------------------------------------
+//                       THE FINAL BUNKER
+//------------------------------------------------------------------------
+title: TheFinalBunker
+---
+The door is open so you go in
+<<complete_and_hide "QuestTitleEnding" 2>>
+<<show_text "EndingCanvas">>
+<<disable_controls "Player">>
+
+There are a couple of people already there
+People whisper. Someone is praying.
+Seems like someone lives here and is not happy
+
+Grumpy Resident: Shouldn't have opened the door!
+
+<<wait 3>>
+You wait for a bit and nothing happens
+...
+...
+<<stop_audio "NatureSound">>
+Someone: It’s coming…
+<<play_audio "MeteorSound">>
+
+<<wait 10>>
+
+<<show_text "EndingMenuPanel">>
+===
+
+//------------------------------------------------------------------------
+//                        ENDING SYSTEM
+//------------------------------------------------------------------------
+title: EndingSystem
+---
+You got xx good points
+You got xx bad points
+
+<<if $goodPoints > $badPoints>>
+	<<jump Heaven>>
+<<elseif $badPoints > $goodPoints>>
+	<<jump Hell>>
+<<else>>
+	<<jump Purgatory>>
+<<endif>>
+===
+
+//------------------------------------------------------------------------
+//                       Heaven
+//------------------------------------------------------------------------
+title: Heaven
+---
+You were decent. You get to go to heaven..
+<<run_command "PlayHeavenMusic">>
+===
+
+//------------------------------------------------------------------------
+//                       Hell
+//------------------------------------------------------------------------
+title: Hell
+---
+You were selfish. You get to go to hell..
+<<run_command "PlayHellMusic">>
+===
+
+//------------------------------------------------------------------------
+//                       Purgatory
+//------------------------------------------------------------------------
+title: Purgatory
+---
+You were… average. You will forever be in purgatory
+===
