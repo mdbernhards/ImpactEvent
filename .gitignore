@@ -6,9 +6,9 @@
 !/.gitignore
 !/.gitattributes
 !/README.md
-!/PUBLICATION.md
 !/THIRD_PARTY_NOTICES.md
 !/ThirdPartyNotices/
+!/screenshots/
 !/Assets/
 !/Packages/
 !/ProjectSettings/
@@ -94,5 +94,5 @@ Thumbs.db
 credentials.json
 service-account*.json
 
-# Local preparation evidence is outside the public snapshot.
+# Local preparation records, temporary indexes, and recovery copies.
 /PublicationReview/
